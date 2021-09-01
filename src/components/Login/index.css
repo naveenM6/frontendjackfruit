@@ -1,0 +1,21 @@
+.login-title{
+    font-family: 'Courier New', Courier, monospace;
+}
+.login-container{
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inputs{
+    padding: 15px;
+    width: 225px;
+    margin: 15px;
+}
+.login-button{
+    padding: 7px 20px;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+}

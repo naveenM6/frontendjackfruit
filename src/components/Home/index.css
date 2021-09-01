@@ -1,0 +1,26 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.home-input{
+    padding:10px;
+    margin:15px;
+}
+.home-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.home-err-msg{
+    color: red;
+    margin-left: 20px;
+    font-weight: 700;
+}
+.submit-btn{
+    margin: 20px;
+    font-weight: 700;
+    padding: 10px;
+}
