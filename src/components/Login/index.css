@@ -19,3 +19,6 @@
     border: 0;
     cursor: pointer;
 }
+.login-err-msg{
+    color: red;
+}

@@ -62,7 +62,7 @@ class Home extends Component {
         return(
                 <div className="home-container">
                     <form onSubmit={this.onSubmit} className="home-form-container">
-                        <div>
+                        <div className="first-container">
                             <input type="text" className="basic-salary home-input" placeholder="BSA" onChange={e => this.setState({bas: parseFloat(e.target.value)})}/>
                             <input type="text" className="leave-allownce home-input" placeholder="LTA" onChange={e => this.setState({lta: parseFloat(e.target.value)})}/>
                             <input type="text" className="home-allowence home-input" placeholder="HRA" onChange={e => this.setState({hra: parseFloat(e.target.value)})}/>
