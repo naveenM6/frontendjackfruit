@@ -73,7 +73,7 @@ app.post("/login",async(req, res) => {
 
 app.post("/posts",async(req, res) => {
   const {BAS,HRA,LTA,FA,INV,RENT,CITY,MED,TAXABLE} = req.body;
-  console.log(BAS,HRA,LTA,FA,INV,RENT,CITY,MED,TAXABLE);
+  /* console.log(BAS,HRA,LTA,FA,INV,RENT,CITY,MED,TAXABLE); */
   const query = `
   INSERT INTO usercontent (BAS,HRA,LTA,FA,INV,RENT,CITY,MED,TAXABLE) 
   VALUES (${BAS},${HRA},${LTA},${FA},${INV},${RENT},"${CITY}",${MED},${TAXABLE})`;

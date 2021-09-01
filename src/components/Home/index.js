@@ -7,7 +7,8 @@ import './index.css'
 
 class Home extends Component {
 
-    state = {bas:'',fa:'',lta:'',hra:'',inv:'',rent:'',city:'metro',med:'',amount:'',showMsg:false};
+    state = {bas:'',fa:'',lta:'',hra:'',inv:'',rent:'',
+    city:'metro',med:'',amount:'',showMsg:false,showData:false};
 
     onSubmit = async e => {
         e.preventDefault()
@@ -16,7 +17,6 @@ class Home extends Component {
         if(bas === '' || fa === '' || lta === '' || hra === '' || inv === '' || rent === '' || med === ''){
             this.setState({showMsg: true})
         }else{
-            this.setState({showMsg: false})
             let appBas = null;
             let appRent=null;
             if(city === 'metro'){
@@ -31,6 +31,8 @@ class Home extends Component {
             const appHRA = li[0];
             const taxInc = (bas + lta + hra + fa) - appHRA - inv - med;
             this.setState({amount: taxInc});
+            this.setState({showMsg: false})
+            this.setState({showData: true});
 
             const url = `http://localhost:5004/posts`;
 
@@ -45,10 +47,12 @@ class Home extends Component {
             }
 
             const response = await fetch(url, options);
-
             console.log(response);
-
         }
+    }
+
+    closeData = () => {
+        this.setState({showData:false});
     }
 
     render(){
@@ -57,11 +61,25 @@ class Home extends Component {
             return <Redirect to="/login" />
         }
 
-        const {amount,showMsg} = this.state;
+        const {amount,showMsg,showData,bas,fa,lta,hra,inv,rent,med,city} = this.state;
 
         return(
                 <div className="home-container">
-                    <form onSubmit={this.onSubmit} className="home-form-container">
+                    {showData && (
+                        <div className="data-container">
+                            <p>BAS :- {bas}</p>
+                            <p>HRA :- {hra}</p>
+                            <p>LTA :- {lta}</p>
+                            <p>FA :- {fa}</p>
+                            <p>INV :- {inv}</p>
+                            <p>RENT :- {rent}</p>
+                            <p>MED :- {med}</p>
+                            <p>City  :- {city}</p>
+                            <h1>Taxable Income :- {amount}</h1>
+                            <button onClick={this.closeData}>Close</button>
+                        </div>
+                    )}
+                    {!showData && (<form onSubmit={this.onSubmit} className="home-form-container">
                         <div className="first-container">
                             <input type="text" className="basic-salary home-input" placeholder="BSA" onChange={e => this.setState({bas: parseFloat(e.target.value)})}/>
                             <input type="text" className="leave-allownce home-input" placeholder="LTA" onChange={e => this.setState({lta: parseFloat(e.target.value)})}/>
@@ -77,8 +95,7 @@ class Home extends Component {
                         <input type="text" className="form-control home-input" placeholder="Med" onChange={e => this.setState({med: parseFloat(e.target.value)})}/>
                         {showMsg && <p className="home-err-msg">*Fill all details before Submit</p>}
                         <button type="submit" className="submit-btn">Submit</button>
-                    </form>
-                    <h1>Taxable Income :- {amount}</h1>
+                    </form>)}
                 </div>
         )
     }
